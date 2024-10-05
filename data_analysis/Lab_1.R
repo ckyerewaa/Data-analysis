@@ -43,3 +43,6 @@ colMeans(data_set1)
 
 #creating a new column
 data_set$size = ifelse(data_set$Sepal.Length > 5, 'large', 'small')
+
+install.packages("tidyverse")
+
