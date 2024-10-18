@@ -20,3 +20,27 @@ read_csv("first metre line
          col_names = F,
          skip = 2,
          comment = '#')
+
+#inline files with metre header lines and comments
+read_csv("first metre line
+          second metre line
+          c1,c2,c3 # comments
+         1,a,T # comments
+         2,b,T
+         3,c,F",
+         show_col_types = F,
+         col_names = T,
+         skip = 2,
+         comment = '#')
+
+#import mpg_mini data
+df <- read_csv(file = "./data/mpg_mini.csv")
+df1 <- read_csv(file = "C:/Users/Cynthia Kyerewaa/OneDrive/Desktop/agogo.csv")
+
+#read text files
+df2 <- read_delim(file = "./data/mpg.txt",
+                  skip = 3,
+                  col_names = T,
+                  delim = " ",
+                  skip_empty_rows = T)
+?read_delim

@@ -1,0 +1,46 @@
+#load tidyverse
+library(tidyverse)
+
+# import the dataset chronic_kidney_disease_full.arff.txt
+df3 <- read_csv(file = "./data/chronic_kidney_disease_full.arff.txt",
+                  col_names = FALSE,  # first row not column name         
+                  na = "?",   #replace all `?´with NA                 
+                  skip = 145) #skip the first 145 rows
+
+#Assign column names 
+col_names <- c("age", "Blood Pressure", "Specific Gravity", "Albumin", "Sugar", "Red Blood Cells",
+               "Pus Cell", "Pus Cell clumps", "Bacteria", "Blood Glucose Random", "Blood Urea", "Serum Creatinine",
+               "Sodium", "Potassium", "Hemoglobin","Packed  Cell Volume", "White Blood Cell Count cells/cumm", 
+               "Red Blood Cell Count millions/cmm", "Hypertension", "Diabetes Mellitus", "Coronary Artery Disease",
+               "Appetite","Pedal Edema", "Anemia", "Class")
+
+#Assign column names to df3
+colnames(df3) <- col_names
+
+#creating a copy of the main dataset and naming it data
+data <- df3
+
+# delete mistakenly created data
+rm(df1)
+
+#clean variable names
+library(janitor)# Load the janitor package
+data <- data%>% clean_names()# Clean the column names of 'data'and assign it back to data
+colnames(data)# Display the column names of the 'data'
+
+#correct values in the diabetes mellitus column
+      data <- data %>% mutate(
+      new_diabete_mellitus = case_when(
+      diabetes_mellitus ==" yes" ~ "yes",
+      diabetes_mellitus =="\tno" ~ "no",
+      diabetes_mellitus =="\tyes" ~ "yes",
+      diabetes_mellitus == "" ~ NA,
+      .default= diabetes_mellitus
+      
+    ))
+  x <- select(main_data, diabetes_mellitus, new_diabete_mellitus)
+  filter(x, diabetes_mellitus %in% c(" yes","\tno","\tyes", ""))
+  main_data %>% select(diabetes_mellitus, new_diabete_mellitus) %>% 
+    filter(diabetes_mellitus %in% c(" yes","\tno","\tyes", ""))
+  
+  

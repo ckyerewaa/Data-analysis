@@ -1,0 +1,9 @@
+# Install the foreign package
+install.packages("foreign")
+
+# Load the foreign package
+library(foreign)
+
+# Read the ARFF file
+df3 <- read.arff("//wsl.localhost/Ubuntu/home/cynthia/data_analysis/Data-analysis/data_analysis/chronic_kidney_disease_full.arff.txt")
+df3 <- read_arff("//wsl.localhost/Ubuntu/home/cynthia/data_analysis/Data-analysis/data_analysis/chronic_kidney_disease_full.arff.txt")

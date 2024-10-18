@@ -1,0 +1,32 @@
+#move to column
+header_row <- 116
+
+#Read the rows that contains the column names
+col_names <- read_delim(file = "./data/chronic_kidney_disease_full.arff.txt",
+                        delim = ",",                  # delimiter
+                        col_names = FALSE,            # Read without assuming first row as column names
+                        skip = 116,                   # Skip rows before the header row
+                        n_max = 25,                   # Read only the row with column names
+                        )
+
+# Extract the column names from this row
+column_names <- as.character(unlist(col_names[1, ]))
+
+# Step 3: Read the rest of the file (data), skipping the rows before the data starts
+# Assuming the actual data starts on the next line after the column names
+data_start_row <- header_row + 1
+
+# Read the data, skipping the rows before the data starts
+ckd_data <- read_delim(
+  file = "./data/chronic_kidney_disease_full.arff.txt",
+  delim = ",",                  # Specify your delimiter
+  col_names = FALSE,            # We'll assign the column names manually
+  skip = data_start_row - 1,    # Skip to where the actual data starts
+  na = "?"                      # Handle missing values represented by "?"
+)
+
+# Step 4: Assign the column names to the dataset
+colnames(ckd_data) <- column_names
+
+# View the first few rows of the data
+head(ckd_data)

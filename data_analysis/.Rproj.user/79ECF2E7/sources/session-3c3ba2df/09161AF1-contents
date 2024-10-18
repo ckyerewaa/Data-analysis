@@ -1,0 +1,16 @@
+#import data
+dfa <- read_delim(file = "./data/chronic_kidney_disease_full.arff.txt",
+                  delim = ",",
+                  col_names = FALSE,          
+                  na = "?",                    
+                  skip = 145,
+                  delim = ",")
+
+#Assign column names 
+col_names <- c("age", "Blood Pressure", "Specific Gravity", "Albumin", "Sugar", "Red Blood Cells",
+               "Pus Cell", "Pus Cell clumps", "Bacteria", "Blood Glucose Random", "Blood Urea", "Serum Creatinine",
+               "Sodium", "Potassium", "Hemoglobin","Packed  Cell Volume", "White Blood Cell Count cells/cumm", 
+               "Red Blood Cell Count millions/cmm", "Hypertension", "Diabetes Mellitus", "Coronary Artery Disease",
+               "Appetite","Pedal Edema", "Anemia", "Class")
+
+colnames(df4) <- col_names

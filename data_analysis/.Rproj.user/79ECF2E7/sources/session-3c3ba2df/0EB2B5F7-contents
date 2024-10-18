@@ -1,0 +1,14 @@
+# Install readr package 
+install.packages("readr")
+
+# Load the readr package
+library(readr)
+
+# Read the file
+df3<- read_delim("./data/chronic_kidney_disease_full.arff.txt", delim = ",",
+                 col_names = TRUE,         # First row contains column names
+                 na = "?",                 # Treat "?" as missing values (NA)
+                 skip = 0,                 # Don't skip any rows (data starts immediately)
+                 trim_ws = TRUE            # Trim any extra spaces around values
+)
+
